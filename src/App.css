@@ -1,0 +1,817 @@
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.storage-link {
+  color: #2196F3;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 1px solid #2196F3;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.storage-link:hover {
+  background-color: #2196F3;
+  color: white;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.label-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.label-button {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  transition: all 0.2s;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.label-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.label-button.selected {
+  box-shadow: 0 0 0 2px #000, 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .label-button.selected {
+  box-shadow: 0 0 0 2px #fff, 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.label-button:hover {
+  opacity: 0.8;
+}
+
+.todo-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.add-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.drag-handle {
+  cursor: move;
+  color: #999;
+  padding: 0 8px;
+  font-size: 18px;
+  user-select: none;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.todo-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.subtask-count {
+  font-size: 12px;
+  color: #666;
+  background-color: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.dark-mode .subtask-count {
+  color: #aaa;
+  background-color: #404040;
+}
+
+.due-date {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dark-mode .due-date {
+  color: #aaa;
+}
+
+.priority-icon {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.todo-content {
+  flex: 1;
+  margin: 0 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subtask-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: 24px;
+}
+
+.subtask-preview-item {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dark-mode .subtask-preview-item {
+  color: #aaa;
+}
+
+.subtask-preview-item.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.subtask-more {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+.dark-mode .subtask-more {
+  color: #aaa;
+}
+
+/* タスク詳細モーダルのサブタスクスタイル */
+.subtask-list {
+  margin-top: 8px;
+  text-align: left;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.subtask-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 0;
+  margin: 0;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.subtask-item input[type="checkbox"] {
+  margin: 0;
+  margin-right: 8px;
+  flex-shrink: 0;
+  padding: 0;
+  width: auto;
+}
+
+.subtask-item span {
+  flex-grow: 1;
+  text-align: left;
+  margin-right: 8px;
+}
+
+.todo-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.todo-label {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: white;
+  margin-right: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.todo-checkbox {
+  margin-right: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.delete-button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.label-editor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.label-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-actions button:first-child {
+  background-color: #f44336;
+  color: white;
+}
+
+.modal-actions button:last-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.color-picker {
+  margin: 10px 0;
+}
+
+.current-color-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.current-color {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.color-options {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.color-option.selected {
+  border: 2px solid #000;
+  transform: scale(1.1);
+}
+
+.dark-mode .color-option.selected {
+  border: 2px solid #fff;
+}
+
+.color-selected-indicator {
+  color: white;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.label-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.label-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.label-edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.label-edit-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
+
+.label-edit-actions button:hover {
+  background-color: #d0d0d0;
+}
+
+.label-manager-button {
+  padding: 8px 16px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.label-manager {
+  margin: 20px 0;
+}
+
+.add-label-button {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.label-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.label-selector .label-button {
+  margin: 0;
+}
+
+/* ダークモードのスタイル */
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dark-mode .header {
+  background-color: #2d2d2d;
+}
+
+.dark-mode .todo-item {
+  background-color: #2d2d2d;
+  border-color: #404040;
+}
+
+.dark-mode .todo-item:hover {
+  background-color: #404040;
+}
+
+.dark-mode .modal-content {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+  background-color: #404040;
+  color: #ffffff;
+  border-color: #505050;
+}
+
+.dark-mode .label-button {
+  color: #ffffff;
+}
+
+/* ヘッダーアクションのスタイル */
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ダークモードスイッチのスタイル */
+.dark-mode-toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dark-mode-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "🌙";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  content: "☀️";
+  transform: translateX(26px);
+}
+
+.delete-completed {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.delete-completed:hover {
+  background-color: #d32f2f;
+}
+
+/* 優先度セレクターのスタイル */
+.priority-selector {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.priority-button {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.priority-button.selected {
+  box-shadow: 0 0 0 2px #000;
+}
+
+.dark-mode .priority-button.selected {
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.priority-button:hover {
+  opacity: 0.8;
+}
+
+/* サブタスクのスタイル */
+.subtask-list {
+  margin-top: 8px;
+}
+
+.subtask-item input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.subtask-item .completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.delete-subtask {
+  background: none;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.delete-subtask:hover {
+  text-decoration: underline;
+}
+
+.add-subtask input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.dark-mode .add-subtask input {
+  background-color: #404040;
+  color: #ffffff;
+  border-color: #505050;
+}
+
+/* 期日入力のスタイル */
+input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.dark-mode input[type="date"] {
+  background-color: #404040;
+  color: #ffffff;
+  border-color: #505050;
+}
+
+/* モバイルデバイス向けのスタイル */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .todo-form {
+    flex-direction: column;
+  }
+
+  .todo-input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .add-button {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .label-filter {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 8px;
+    margin: 8px 0;
+  }
+
+  .label-button {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+
+  .todo-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .todo-content {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .todo-meta {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .priority-selector {
+    flex-wrap: wrap;
+  }
+
+  .priority-button {
+    flex: 1;
+    min-width: 60px;
+  }
+
+  .subtask-list {
+    width: 100%;
+  }
+
+  .subtask-item {
+    flex-wrap: wrap;
+  }
+
+  .delete-subtask {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}
+
+/* タッチデバイス向けの最適化 */
+@media (hover: none) {
+  .label-button:hover,
+  .color-option:hover {
+    transform: none;
+  }
+
+  .label-button:active,
+  .color-option:active {
+    transform: scale(0.95);
+  }
+} 
